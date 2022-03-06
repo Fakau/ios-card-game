@@ -8,14 +8,88 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    
+    @State var playerCard = "card3"
+    @State var computerCard = "card2"
+    @State var playerScore = 0;
+    @State var computerScore = 0;
+    
     var body: some View {
         
         //VStack = vertical leyout
         //Hstack = horizontal layout
         //ZStack =
+        
+        // String  => "Hello"
+        // var myVar:String = "Hello"
+        // var myVar = "Hello"
+        
+        // Int  => 100
+        // var myVar:Int = 100
+        // var myVar = 100
+        
+        // Double  => 100
+        // var myVar:Double = 100.00
+        // var myVar = 100.00
+        
+        //Constant
+        // let myConst:String = "Hello"
+        
+        //function
+        /*
+             func myFunction(){
+                 let a = 7;
+                 let b = 9
+                 print(a = + b)
+             
+             }
+         
+             unc myFunction(a: Int, b:Int) -> Int{
+                 return a+b
+             }
+         
+             argument label
+             func myFunction(FirstNumber a: Int, SecondNumber b:Int) -> Int{
+                 return a+b
+             }
+         
+             func myFunction(_ a: Int, _ b:Int) -> Int{
+                 return a+b
+             }
+         
+         */
+        
+        //Structure
+        /*
+             struct myStruct{
+               //variable and constants
+               //function
+             
+             }
+         
+         */
+        
+        //button instance with closure
+        /*
+         Button("click me", action:{
+            print("click me")
+         })
+         */
+        
+        //button instance with trailing closure
+        /*
+         Button("click me"){
+            print("click me")
+         })
+         */
+
+        
+
+        
         ZStack{
             
-            Image("image_backgroung")
+            Image("background")
                 .ignoresSafeArea()
             
             VStack{
@@ -28,15 +102,30 @@ struct ContentView: View {
                 
                 HStack{
                     Spacer()
-                    Image("card2")
+                    Image(playerCard)
                     Spacer()
-                    Image("card3")
+                    Image(computerCard)
                     Spacer()
                 }
                 
                 Spacer()
-                
-                Image("deal_button")
+     
+                Button (action: {
+                    let playerRand = Int.random(in: 2...14)
+                    let computerRand = Int.random(in: 2...14)
+                    
+                    playerCard = "card" + String(playerRand)
+                    computerCard = "card" +  String(computerRand)
+                    
+                    if playerRand > computerRand {
+                        playerScore += 1
+                    } else {
+                        computerScore += 1
+                    }
+                },  label:  {
+                    Image("dealbutton")
+                })
+
                 
                 Spacer()
                 
@@ -47,23 +136,23 @@ struct ContentView: View {
                     VStack{
                         Text("Player")
                             .font(.headline)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(Color.white)
                             .padding(.bottom, 10.0)
-                        Text("0")
+                        Text(String(playerScore))
                             .font(.subheadline)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(Color.white)
                     }
                     
                     Spacer()
                     
                     VStack{
-                        Text("CPU")
+                        Text("Computer")
                             .font(.headline)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(Color.white)
                             .padding(.bottom, 10.0)
-                        Text("0")
+                        Text(String(computerScore))
                             .font(.subheadline)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(Color.white)
                     }
                     
                     Spacer()
@@ -86,3 +175,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
